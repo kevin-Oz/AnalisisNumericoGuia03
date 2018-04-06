@@ -37,15 +37,15 @@ public void mostrar(){
     txti2.setVisible(true);
 }
     
-    public static double[] discriminante(double a, double b, double c) {
-        double h, g, d;
-        h = (3 * b - Math.pow(a, 2)) / 9;
-        g = (9 * a * b - 27 * c - 2 * Math.pow(a, 3)) / 54;
-        d = Math.pow(g, 2) + Math.pow(h, 3);
-
-        double valores[] = {d, h, g};
-        return valores;
-    }
+//    public static double[] discriminante(double a, double b, double c) {
+//        double h, g, d;
+//        h = (3 * b - Math.pow(a, 2)) / 9;
+//        g = (9 * a * b - 27 * c - 2 * Math.pow(a, 3)) / 54;
+//        d = Math.pow(g, 2) + Math.pow(h, 3);
+//
+//        double valores[] = {d, h, g};
+//        return valores;
+//    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -258,7 +258,6 @@ public void mostrar(){
     private void srBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_srBotonActionPerformed
 
         double a, b, c, cubo, x1 = 0, x2 = 0, x3 = 0;
-
         cubo = Double.parseDouble(txtCubo.getText());
         a = Double.parseDouble(txtA.getText());
         b = Double.parseDouble(txtB.getText());
@@ -270,95 +269,98 @@ public void mostrar(){
             c = c / cubo;
             cubo = 1;
         }
+        
+        Proceso tar = new Proceso();
+       double resp [] = Proceso.tartaglia(a, b, c);
 
-        double resp[] = discriminante(a, b, c);
-        for (int i = 0; i < resp.length; i++) {
-            System.out.println("" + resp[i]);
+//        double resp[] = discriminante(a, b, c);
+//        for (int i = 0; i < resp.length; i++) {
+//            System.out.println("" + resp[i]);
+//
+//        }
+//
+//        if (resp[0] < 0) {
+//            ocultar();
+//            double tetha, relleno, gradis, angulo2, angulo3;
+//            relleno = resp[2] / Math.sqrt(-Math.pow(resp[1], 3));
+//            tetha = Math.acos((relleno));
+//            gradis = Math.toDegrees(tetha);
+//
+//            x1 = 2 * (Math.sqrt(-resp[1]) * Math.cos(tetha / 3)) - (a / 3);
+//            System.out.println("x1=" + x1);
+//            angulo2 = (gradis / 3) + 120;
+//            x2 = 2 * (Math.sqrt(-resp[1]) * Math.cos(Math.toRadians(angulo2))) - (a / 3);
+//            System.out.println("x2 = " + x2);
+//            angulo3 = (gradis / 3) + 240;
+//            x3 = 2 * (Math.sqrt(-resp[1]) * Math.cos(Math.toRadians(angulo3))) - (a / 3);
+//            System.out.println("x2 = " + x3);
+////para valores que no son cero exacto!!
+//        } else if (resp[0] == 0 || resp[0]<0.000001) {
+//            ocultar();
+//            resp[2] = (-9 * a * b + 27 * c + 2 * Math.pow(a, 3)) / 54;
+//            double p, q;
+//            p = 3 * resp[1];
+//
+//            q = 2 * resp[2];
+//
+//            System.out.println("p= " + p + " q= " + q);
+//            System.out.println("a= " + a);
+//            double num = 3 * q;
+//            double den = 2 * p;
+//
+//            x1 = -(num / den) - (a / 3);
+//            x2 = x1;
+//            double numerador = 4 * (Math.pow(p, 2));
+//            double denominador = 9 * q;
+//            x3 = -(numerador / denominador) - (a / 3);
+//
+//        } else if (resp[0] > 0) {
+//            resp[2] = (-9 * a * b + 27 * c + 2 * Math.pow(a, 3)) / 54;
+//            double p = 0, q = 0, raizCubo = 1 / 3, relleno, rellenuto, imaginaria, real;
+//
+//            relleno = -resp[2] + Math.sqrt(resp[0]);
+//            rellenuto = -resp[2] - Math.sqrt(resp[0]);
+//
+//            if (relleno == 0) {
+//                p = 0;
+//            } else {
+//                if (relleno > 0) {
+//                 
+//                    p = Math.pow(rellenuto, raizCubo);
+//                    
+//                } else if (rellenuto < 0) {
+//                    
+//                    p = -Math.pow(rellenuto, raizCubo);
+//                }
+//            }
+//
+//            if (rellenuto == 0) {
+//                q = 0;
+//            } else {
+//
+//                if (rellenuto > 0) {
+//                    
+//                    q = Math.pow(rellenuto, raizCubo);
+//                    
+//                } else if (rellenuto < 0) {
+//                    
+//                    q = -Math.pow(rellenuto, raizCubo);
+//                }
+//
+//            }
+//            imaginaria = (p - q) * (Math.sqrt(3) / 2);
+//            x1 = p + q - (a / 3);
+//            real = -((p + q) / 2) - (a / 3);
+//            x2 = real;
+//            x3 =x2;
+//           txtImagi.setText(String.valueOf(imaginaria));
+//           txtImagina.setText(String.valueOf(imaginaria));
+//            mostrar();
+//        }
 
-        }
-
-        if (resp[0] < 0) {
-            ocultar();
-            double tetha, relleno, gradis, angulo2, angulo3;
-            relleno = resp[2] / Math.sqrt(-Math.pow(resp[1], 3));
-            tetha = Math.acos((relleno));
-            gradis = Math.toDegrees(tetha);
-
-            x1 = 2 * (Math.sqrt(-resp[1]) * Math.cos(tetha / 3)) - (a / 3);
-            System.out.println("x1=" + x1);
-            angulo2 = (gradis / 3) + 120;
-            x2 = 2 * (Math.sqrt(-resp[1]) * Math.cos(Math.toRadians(angulo2))) - (a / 3);
-            System.out.println("x2 = " + x2);
-            angulo3 = (gradis / 3) + 240;
-            x3 = 2 * (Math.sqrt(-resp[1]) * Math.cos(Math.toRadians(angulo3))) - (a / 3);
-            System.out.println("x2 = " + x3);
-//para valores que no son cero exacto!!
-        } else if (resp[0] == 0 || resp[0]<0.000001) {
-            ocultar();
-            resp[2] = (-9 * a * b + 27 * c + 2 * Math.pow(a, 3)) / 54;
-            double p, q;
-            p = 3 * resp[1];
-
-            q = 2 * resp[2];
-
-            System.out.println("p= " + p + " q= " + q);
-            System.out.println("a= " + a);
-            double num = 3 * q;
-            double den = 2 * p;
-
-            x1 = -(num / den) - (a / 3);
-            x2 = x1;
-            double numerador = 4 * (Math.pow(p, 2));
-            double denominador = 9 * q;
-            x3 = -(numerador / denominador) - (a / 3);
-
-        } else if (resp[0] > 0) {
-            resp[2] = (-9 * a * b + 27 * c + 2 * Math.pow(a, 3)) / 54;
-            double p = 0, q = 0, raizCubo = 1 / 3, relleno, rellenuto, imaginaria, real;
-
-            relleno = -resp[2] + Math.sqrt(resp[0]);
-            rellenuto = -resp[2] - Math.sqrt(resp[0]);
-
-            if (relleno == 0) {
-                p = 0;
-            } else {
-                if (relleno > 0) {
-                    
-                    p = Math.pow(rellenuto, raizCubo);
-                    
-                } else if (rellenuto < 0) {
-                    
-                    p = -Math.pow(rellenuto, raizCubo);
-                }
-            }
-
-            if (rellenuto == 0) {
-                q = 0;
-            } else {
-
-                if (rellenuto > 0) {
-                    
-                    q = Math.pow(rellenuto, raizCubo);
-                    
-                } else if (rellenuto < 0) {
-                    
-                    q = -Math.pow(rellenuto, raizCubo);
-                }
-
-            }
-            imaginaria = (p - q) * (Math.sqrt(3) / 2);
-            x1 = p + q - (a / 3);
-            real = -((p + q) / 2) - (a / 3);
-            x2 = real;
-            x3 =x2;
-           txtImagi.setText(String.valueOf(imaginaria));
-           txtImagina.setText(String.valueOf(imaginaria));
-            mostrar();
-        }
-
-        txtRaiz1.setText(String.valueOf(x1));
-        txtRaiz2.setText(String.valueOf(x2));
-        txtRaiz3.setText(String.valueOf(x3));
+        txtRaiz1.setText(String.valueOf(resp[0]));
+        txtRaiz2.setText(String.valueOf(resp[1]));
+        txtRaiz3.setText(String.valueOf(resp[2]));
     }//GEN-LAST:event_srBotonActionPerformed
 
     private void txtImagiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtImagiActionPerformed
