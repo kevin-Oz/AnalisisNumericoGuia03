@@ -1,16 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package analisisnumerico;
 
 /**
  *
  * @author kevin
  */
-public class Proceso {
-    
+public class ProcesoTarFerrari {
     
      public static double[] discriminante(double a, double b, double c) {
         double h, g, d;
@@ -20,17 +14,14 @@ public class Proceso {
 
         double valores[] = {d, h, g};
         return valores;
-    }
-     
-     
-     
+    }   
      public static double [] tartaglia(double a,double b,double c){
            
          
          double resp[] = discriminante (a, b, c);
          System.out.println("Discriminante="+resp[0]);
          
-        double x1 = 0,x2 = 0,x3 = 0;
+        double x1 = 0,x2 = 0,x3 = 0,imaginaria=0;
 
         if (resp[0] < 0) {
         
@@ -68,22 +59,25 @@ public class Proceso {
             x3 = -(numerador / denominador) - (a / 3);
 
         } else if (resp[0] > 0) {
-            resp[2] = (-9 * a * b + 27 * c + 2 * Math.pow(a, 3)) / 54;
-            double p = 0, q = 0, raizCubo = 1 / 3, relleno, rellenuto, imaginaria, real;
+          resp[2] = (-9 * a * b + 27 * c + 2 * Math.pow(a, 3)) / 54;
+            double p = 0.0, q = 0.0, relleno, rellenuto, real;
 
             relleno = -resp[2] + Math.sqrt(resp[0]);
             rellenuto = -resp[2] - Math.sqrt(resp[0]);
 
+            System.out.println("rellenop=  "+relleno);
+            System.out.println("rellenoQ=  "+rellenuto);
             if (relleno == 0) {
                 p = 0;
             } else {
                 if (relleno > 0) {
                  
-                    p = Math.pow(rellenuto, raizCubo);
+                    p = Math.pow(relleno, (1.0/3.0));
                     
-                } else if (rellenuto < 0) {
-                    
-                    p = -Math.pow(rellenuto, raizCubo);
+                } else if (relleno< 0) {
+                 relleno=relleno*(-1);
+
+                    p = -Math.pow(relleno, (1.0/3.0));
                 }
             }
 
@@ -93,11 +87,12 @@ public class Proceso {
 
                 if (rellenuto > 0) {
                     
-                    q = Math.pow(rellenuto, raizCubo);
+                    q = Math.pow(rellenuto,(1.0/3.0));
                     
                 } else if (rellenuto < 0) {
+                    rellenuto=rellenuto*(-1);
                     
-                    q = -Math.pow(rellenuto, raizCubo);
+                    q = -Math.pow(rellenuto,(1.0/3.0));
                 }
 
             }
@@ -108,18 +103,21 @@ public class Proceso {
             x2 = real;
             x3 =x2;
             
-            //falta imaginaria
-            
+       
         }
          for (int i = 0; i <resp.length; i++) {
               System.out.println(""+resp[i]);
          }
-        
-      double valores[] = {x1, x2, x3};
+        if(resp[0]>0){
+         double valores[] = {x1, x2, x3,imaginaria};
         return valores;
+        }else{
+              double valores[] = {x1, x2, x3};
+        return valores;
+        }
+    
      
      }
-     
 
      public static double [] ferrari(double a,double b,double c, double d){
       
@@ -134,13 +132,13 @@ public class Proceso {
         double u= -r;
         double uCero= (4 * p * r - Math.pow(q,2))/8;
 
-        double raices [] = Proceso.tartaglia(uCuadrado, u, uCero);
+        double raices [] = ProcesoTarFerrari.tartaglia(uCuadrado, u, uCero);
         System.out.println("u²= "+uCuadrado+"\nu= "+u+"c= "+uCero);
         double v,w;
         v=Math.sqrt(2 * raices[0]- p);
         w=Math.sqrt( Math.pow(raices[0],2) -r);
         System.out.println("v= "+v+"\nW= "+w+"\nU= "+raices[0]+", "+raices[1]+", "+raices[2] );
-double discriminantee= Math.pow(v,2)- 4 * (raices[0]-w);
+        double discriminantee= Math.pow(v,2)- 4 * (raices[0]-w);
         x1= (v + Math.sqrt(discriminantee))/2 - (a/4);
         x2 =(v - Math.sqrt(discriminantee))/2 - (a/4);
         x3= (-v + Math.sqrt(discriminantee))/2 - (a/4);
@@ -154,5 +152,4 @@ double discriminantee= Math.pow(v,2)- 4 * (raices[0]-w);
      double valores []={x1,x2,x3,x4};
      return valores;
      }
-    
 }
