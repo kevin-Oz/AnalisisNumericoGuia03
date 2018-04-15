@@ -9,32 +9,32 @@ import org.nfunk.jep.JEP;
 
 /**
  *
- * @author kevin
+ * @author kevin Figueroa
  */
 public class Funcion {
     
     JEP hi= new JEP();
     
-        public Funcion(String def){
+        public Funcion(String funci){
             hi.addVariable("x", 0);
             hi.addStandardConstants();
             hi.addStandardFunctions();
-            hi.parseExpression(def);
+            hi.parseExpression(funci);
             if(hi.hasError()){
                 System.out.println(hi.getErrorInfo());
             }
         
         }
     public double eval(double x){
-        double d;
+        double resp;
         
         hi.addVariable("x", x);
-        d=hi.getValue();
+        resp=hi.getValue();
             if(hi.hasError()){
                 System.out.println(hi.getErrorInfo());
             }
          
-        return d;
+        return resp;
         
     }
        

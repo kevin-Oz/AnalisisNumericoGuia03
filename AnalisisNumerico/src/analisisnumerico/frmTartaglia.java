@@ -7,7 +7,7 @@ package analisisnumerico;
 
 /**
  *
- * @author kevin
+ * @author kevin Figueroa
  */
 public class frmTartaglia extends javax.swing.JFrame {
 

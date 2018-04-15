@@ -2,7 +2,7 @@ package analisisnumerico;
 
 /**
  *
- * @author kevin
+ * @author kevin Figueroa
  */
 public class ProcesoTarFerrari {
     
