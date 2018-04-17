@@ -18,13 +18,6 @@ public class Muller {
 
             s0 = (f.eval(x1) - f.eval(x0)) / h0;
             s1 = (f.eval(x2) - f.eval(x1)) / h1;
-
-            System.out.println("ho=" + h0);
-            System.out.println("h1=" + h1);
-
-            System.out.println("so=" + s0);
-
-            System.out.println("s1=" + s1);
             //encontrando los valores a b c
 
             a = (s1 - s0) / (h1 + h0);

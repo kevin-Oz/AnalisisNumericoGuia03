@@ -4,9 +4,6 @@
  * and open the template in the editor.
  */
 package analisisnumerico;
-
-import java.util.ArrayList;
-
 /**
  *
  * @author kevin Figueroa
