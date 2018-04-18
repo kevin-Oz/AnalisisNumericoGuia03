@@ -40,7 +40,7 @@ public class ProcesoTarFerrari {
 //para valores que no son cero exacto!!
         } else if (resp[0] == 0 || resp[0] < 0.000001) {
 
-            //   resp[2] = (-9 * a * b + 27 * c + 2 * Math.pow(a, 3)) / 54;
+              resp[2] = (-9 * a * b + 27 * c + 2 * Math.pow(a, 3)) / 54;
             double p, q;
             p = 3 * resp[1];
 
